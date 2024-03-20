@@ -5,6 +5,7 @@ public class SimpleClass {
   public SimpleClass(){
     status = true;
   }
+
   public boolean getStatus(){
     return status;
   }
