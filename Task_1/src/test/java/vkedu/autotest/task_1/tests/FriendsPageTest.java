@@ -9,6 +9,7 @@ import vkedu.autotest.task_1.pages.FriendsPage;
 import vkedu.autotest.task_1.pages.LoginPage;
 
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class FriendsPageTest extends BaseTest{
@@ -24,9 +25,7 @@ public class FriendsPageTest extends BaseTest{
 
   @AfterEach
   public void reset(){
-    WebElement dropDownMenu = $(By.xpath("//*[@id='hook_Block_MainMenu']/div/ul/li[1]/div/button"));
-    WebElement delete = $(By.xpath("//*[@id='hook_Block_MainMenu']/div/ul/li[1]/div/div/ul/li/a"));
-    dropDownMenu.click();
-    delete.click();
+    $(By.xpath(".//button[@aria-label='Запрос отправлен']")).shouldBe(visible).click();
+    $(By.xpath("//a[@aria-label='Отменить запрос']")).shouldBe(visible).click();
   }
 }
