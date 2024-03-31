@@ -3,49 +3,64 @@ package vkedu.autotest.task_1.pages;
 
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class BasePage {
+  public static final String PUBLISH_BUTTON = "//button[@data-testid='ddm-button']";
+  private static final String USER_PAGE = "//a[@data-l='t,userPage']";
+  private static final String USER_MAIN = "//a[@data-l='t,userMain']";
+  private static final String HOBBY_PAGE = "//a[@data-l='t,hobby']";
+  private static final String USERS_FRIENDS_PAGE = "//a[@data-l='t,userFriend']";
+  private static final String USERS_PHOTOS_PAGE = "//a[@data-l='t,userFriend']";
+  private static final String USERS_GROUPS_PAGE = "//a[@data-l='t,userAltGroup']";
+  private static final String GAMES_PAGE = "//a[@data-l='t,appsShowcaseHD']";
+  private static final String USERS_GIFTS_PAGE = "//a[@data-l='t,giftsFront']";
+  private static final String RECOMMENDATIONS_PAGE = "//a[@data-l='t,discovery']";
+  private static final String APPS_PAGE = "//a[@data-l='t,bizApps']";
+  private static final String DATING_APPS_PAGE = "//a[@data-l='t,appsDating']";
+  private static final String PROFILE_SETTINGS = "//button[@aria-label='Настройки профиля']";
+  private static final String LOG_OUT_BUTTON = "//a[@data-l='t,logout']";
+  private static final String CONFIRM_LOG_OUT_BUTTON = "//input[@data-l='t,logout']";
+  public void goToPublish(){
+    $(By.xpath(PUBLISH_BUTTON)).shouldBe(visible).click();
+  }
   public void goToUserPage(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[1]/a")).click();
+    $(By.xpath(USER_PAGE)).shouldBe(visible).click();
   }
   public void goToUserMain(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[2]/a")).click();
+    $(By.xpath(USER_MAIN)).shouldBe(visible).click();
   }
   public void goTohobby(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[3]/a")).click();
+    $(By.xpath(HOBBY_PAGE)).shouldBe(visible).click();
   }
   public void goToUserFriends(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[4]/a")).click();
+    $(By.xpath(USERS_FRIENDS_PAGE)).shouldBe(visible).click();
   }
   public void goToUserPhotos(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[5]/a")).click();
+    $(By.xpath(USERS_PHOTOS_PAGE)).shouldBe(visible).click();
   }
   public void goToUserGroups(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[6]/a")).click();
+    $(By.xpath(USERS_GROUPS_PAGE)).shouldBe(visible).click();
   }
   public void goToGames(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[7]/a")).click();
+    $(By.xpath(GAMES_PAGE)).shouldBe(visible).click();
   }
   public void goToUserGifts(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[8]/a")).click();
+    $(By.xpath(USERS_GIFTS_PAGE)).shouldBe(visible).click();
   }
   public void goToUserRecommendations(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[9]/a")).click();
+    $(By.xpath(RECOMMENDATIONS_PAGE)).shouldBe(visible).click();
   }
   public void goToApps(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[10]/a")).click();
+    $(By.xpath(APPS_PAGE)).shouldBe(visible).click();
   }
   public void goToAppsDating(){
-    $(By.xpath("//div[@id='hook_Block_Navigation']/div/div/div[11]/a")).click();
-  }
-
-  public void goToPublish(){
-    $(By.xpath("//*[@id='hook_Block_PostingFormDropdown']/posting-form-dropdown/div/button")).click();
+    $(By.xpath(DATING_APPS_PAGE)).shouldBe(visible).click();
   }
   public void logOut(){
-    $(By.xpath("//*[@id='hook_Block_ToolbarUserDropdown']/div/button/span")).click();
-    $(By.xpath("//div[@id='user-dropdown-menu']/div[1]/div[1]/div[1]/div[2]/a")).click();
-    $(By.xpath("//*[@id='hook_FormButton_logoff.confirm_not_decorate']")).click();
+    $(By.xpath(PROFILE_SETTINGS)).shouldBe(visible).click();
+    $(By.xpath(LOG_OUT_BUTTON)).shouldBe(visible).click();
+    $(By.xpath(CONFIRM_LOG_OUT_BUTTON)).shouldBe(visible).click();
   }
 }

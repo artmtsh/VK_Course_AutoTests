@@ -6,7 +6,6 @@ import vkedu.autotest.task_1.pages.LoginPage;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Selenide.$;
-
 public class LogOutTest extends BaseTest{
   @Test
   public void logOut(){
