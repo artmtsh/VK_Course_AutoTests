@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
   public final static String login = "technopol63";
   public final static String password = "technopolisPassword";
@@ -15,22 +15,19 @@ public class LoginPage {
   private static final By PASSWORD_FIELD = By.xpath(".//input[@id = 'field_password']");
   private static final By LOGIN_BUTTON = By.xpath(".//input[@class='button-pro __wide']");
 
-  public LoginPage open() {
-    Selenide.open("/");
-    return this;
+  public LoginPage(){
+    checkPage();
   }
 
-  private void insertUser(String user) {
+  public void insertUser(String user) {
     $(EMAIL_FIELD).setValue(user);
   }
 
-  private void insertPassword(String password) {
+  public void insertPassword(String password) {
     $(PASSWORD_FIELD).setValue(password);
   }
 
-  public void loginAs(String user, String password) {
-    insertUser(user);
-    insertPassword(password);
+  public void clickLoginButton() {
     $(LOGIN_BUTTON).click();
   }
 
@@ -41,11 +38,19 @@ public class LoginPage {
   public boolean checkEmailField() {
     return $(EMAIL_FIELD).isDisplayed();
   }
-
-  public boolean checkPage() {
+  @Override
+  public void checkPage() {
     $(EMAIL_FIELD).shouldBe(visible);
     $(PASSWORD_FIELD).shouldBe(visible);
     $(LOGIN_BUTTON).shouldBe(visible);
-    return true;
   }
+
+  public boolean checkPageBool() {
+    boolean emailFieldVisible = $(EMAIL_FIELD).is(visible);
+    boolean passwordFieldVisible = $(PASSWORD_FIELD).is(visible);
+    boolean loginButtonVisible = $(LOGIN_BUTTON).is(visible);
+
+    return emailFieldVisible && passwordFieldVisible && loginButtonVisible;
+  }
+
 }

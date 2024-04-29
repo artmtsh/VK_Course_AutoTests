@@ -7,11 +7,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import vkedu.autotest.task_2.pages.BasePage;
 import vkedu.autotest.task_2.pages.LoginPage;
+import vkedu.autotest.task_2.pages.MainPage;
+
 
 @Tag("Functional_test")
-public class LoginPageTest {
+public class LoginPageTest{
   private static String baseURL = "https://ok.ru/";
-  public static LoginPage loginPage = new LoginPage();
+  public static LoginPage loginPage;
 
   @BeforeAll
   public static void setUp() {
@@ -20,8 +22,8 @@ public class LoginPageTest {
 
   @BeforeEach
   public void setUpEach() {
+    BasePage.open();
     loginPage = new LoginPage();
-    loginPage.open();
   }
 
   @AfterEach
@@ -33,12 +35,12 @@ public class LoginPageTest {
   @ParameterizedTest
   @CsvFileSource(resources = "/validLoginData.csv")
   public void ValidLoginAndPasswordTest(String login, String password) {
-    loginPage.loginAs(login, password);
-    BasePage basePage = new BasePage();
-    basePage.checkPage();
+    loginPage.insertUser(LoginPage.login);
+    loginPage.insertPassword(LoginPage.password);
+    loginPage.clickLoginButton();
     Assertions.assertAll(
             "Check if login successful",
-            () -> Assertions.assertTrue(basePage.checkUserFriends(), "Кнопка раздела друзья должна быть видна " +
+            () -> Assertions.assertTrue(MainPage.checkUserFriends(), "Кнопка раздела друзья должна быть видна " +
                     "после авторизации"),
             () -> Assertions.assertFalse(loginPage.checkLoginButton(), "Кнопка авторизации не должна быть " +
                     "видна после авторизации")
@@ -49,7 +51,9 @@ public class LoginPageTest {
   @ParameterizedTest
   @CsvFileSource(resources = "/invalidLoginData.csv")
   public void InvalidLoginAndPasswordTest(String login, String password) {
-    loginPage.loginAs(login, password);
+    loginPage.insertUser(LoginPage.login);
+    loginPage.insertPassword(LoginPage.password);
+    loginPage.clickLoginButton();
     Assertions.assertAll(
             "Check if login not successful",
             () -> Assertions.assertTrue(loginPage.checkLoginButton(), "Кнопка авторизации должна быть видна " +

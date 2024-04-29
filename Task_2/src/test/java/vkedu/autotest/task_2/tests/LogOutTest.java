@@ -6,17 +6,18 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import vkedu.autotest.task_2.pages.BasePage;
 import vkedu.autotest.task_2.pages.LoginPage;
+import vkedu.autotest.task_2.pages.MainPage;
 
 @Tag("Log_out_test")
-public class LogOutTest extends BaseTest {
+public class LogOutTest extends BaseTest{
   @DisplayName("Проверка корретности выхода из аккаунта")
   @Test
   public void logOutTest() {
-    BasePage basePage = new BasePage();
-    basePage.logOut();
+    MainPage mainPage = new MainPage();
+    mainPage.logOut();
     LoginPage loginPage = new LoginPage();
     loginPage.checkPage();
-    Assertions.assertTrue(loginPage.checkLoginButton(), "При выходе из профиля должна быть " +
-            "видна кнопка авторизации");
+    Assertions.assertTrue(loginPage.checkPageBool(), "При выходе из профиля мы должны быть " +
+            "на странице авторизации");
   }
 }
