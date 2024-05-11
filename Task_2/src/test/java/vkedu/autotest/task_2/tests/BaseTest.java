@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.chrome.ChromeOptions;
 import vkedu.autotest.task_2.pages.BasePage;
 import vkedu.autotest.task_2.pages.LoginPage;
 import vkedu.autotest.task_2.pages.MainPage;
@@ -15,6 +16,9 @@ public abstract class BaseTest {
 
   @BeforeAll
   public static void setUp() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
     Configuration.baseUrl = baseURL;
   }
 

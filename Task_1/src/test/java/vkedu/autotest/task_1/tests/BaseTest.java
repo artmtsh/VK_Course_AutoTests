@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import vkedu.autotest.task_1.pages.LoginPage;
 
 public class BaseTest {
@@ -15,6 +16,9 @@ public class BaseTest {
   public static LoginPage loginPage = new LoginPage();
   @BeforeAll
   public static void setUp() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
     Configuration.baseUrl = baseURL;
   }
   @BeforeEach
